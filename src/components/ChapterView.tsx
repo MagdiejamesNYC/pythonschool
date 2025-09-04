@@ -177,6 +177,12 @@ export const ChapterView: React.FC<ChapterViewProps> = ({
             getAchieverStatus={getAchieverStatus}
             chapterId={chapter.id}
           />
+          onRetryQuiz={() => {
+            console.log('Retry quiz clicked for chapter:', chapter.id);
+            if (onRedoChapter) {
+              onRedoChapter(chapter.id);
+            }
+          }}
         )}
       </div>
     </div>

@@ -446,11 +446,17 @@ export const useGameState = () => {
       requiredCorrect: chapter.questions.length
     });
 
-    // Check if chapter is completed (all cards flipped, all questions answered, 100% correct)
+    // CRITICAL: Chapter completion requires 100% correct answers
+    // All cards must be flipped, all questions answered, and ALL answers must be correct
     if (flippedCards === chapter.flashcards.length && 
         answeredQuestions === chapter.questions.length && 
         correctAnswers === chapter.questions.length) {
       completeChapter(chapterId);
+    } else if (flippedCards === chapter.flashcards.length && 
+               answeredQuestions === chapter.questions.length && 
+               correctAnswers < chapter.questions.length) {
+      // All activities completed but not perfect score - don't complete chapter
+      console.log(`Chapter ${chapterId} not completed: Need 100% correct answers (got ${correctAnswers}/${chapter.questions.length})`);
     }
   };
 

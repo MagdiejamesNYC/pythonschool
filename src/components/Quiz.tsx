@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { CheckCircle, XCircle, Award, Brain, Lightbulb, TrendingUp, TrendingDown, Minus } from 'lucide-react';
+import { CheckCircle, XCircle, Award, Brain, Lightbulb, TrendingUp, TrendingDown, Minus, RotateCcw, AlertTriangle } from 'lucide-react';
 import { Question } from '../types';
 import { analyzeStudentAnswer, generatePersonalizedHint, AIFeedback as AIFeedbackType } from '../lib/ai';
 import { AIFeedback } from './AIFeedback';
@@ -10,6 +10,7 @@ interface QuizProps {
   chapterTitle: string;
   getAchieverStatus?: (chapterId: number) => string | null;
   chapterId?: number;
+  onRetryQuiz?: () => void;
 }
 
 export const Quiz: React.FC<QuizProps> = ({ 
@@ -17,7 +18,8 @@ export const Quiz: React.FC<QuizProps> = ({
   onAnswer, 
   chapterTitle, 
   getAchieverStatus,
-  chapterId = 1
+  chapterId = 1,
+  onRetryQuiz
 }) => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
@@ -34,6 +36,9 @@ export const Quiz: React.FC<QuizProps> = ({
   const currentQuestion = questions[currentQuestionIndex];
   const answeredQuestions = questions.filter(q => q.answered).length;
   const correctAnswers = questions.filter(q => q.correct).length;
+  const allQuestionsAnswered = answeredQuestions === questions.length;
+  const hasIncorrectAnswers = allQuestionsAnswered && correctAnswers < questions.length;
+  const hasPerfectScore = allQuestionsAnswered && correctAnswers === questions.length;
 
   // Get current achiever status
   const achieverStatus = getAchieverStatus ? getAchieverStatus(chapterId) : null;
@@ -175,6 +180,49 @@ export const Quiz: React.FC<QuizProps> = ({
 
   return (
     <>
+      {/* Retry Quiz Banner - Show when all questions answered but not 100% */}
+      {hasIncorrectAnswers && onRetryQuiz && (
+        <div className="bg-orange-50 border border-orange-200 rounded-2xl p-6 mb-6">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-3">
+              <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center">
+                <AlertTriangle className="w-6 h-6 text-orange-600" />
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-orange-800">Perfect Score Required</h3>
+                <p className="text-orange-700">
+                  You need 100% correct answers ({correctAnswers}/{questions.length} = {Math.round((correctAnswers / questions.length) * 100)}%) to unlock the next chapter.
+                </p>
+              </div>
+            </div>
+            <button
+              onClick={onRetryQuiz}
+              className="flex items-center space-x-2 bg-orange-600 text-white px-6 py-3 rounded-lg hover:bg-orange-700 transition-colors font-medium"
+            >
+              <RotateCcw className="w-5 h-5" />
+              <span>Retry Quiz</span>
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Perfect Score Celebration Banner */}
+      {hasPerfectScore && (
+        <div className="bg-green-50 border border-green-200 rounded-2xl p-6 mb-6">
+          <div className="flex items-center space-x-3">
+            <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
+              <CheckCircle className="w-6 h-6 text-green-600" />
+            </div>
+            <div>
+              <h3 className="text-lg font-semibold text-green-800">Perfect Score! 🎉</h3>
+              <p className="text-green-700">
+                Congratulations! You got {correctAnswers}/{questions.length} (100%) correct. You can now proceed to the next chapter!
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+
       <div className="bg-white rounded-2xl shadow-lg p-8">
         <div className="mb-6">
           <div className="flex items-center justify-between mb-4">
@@ -182,7 +230,7 @@ export const Quiz: React.FC<QuizProps> = ({
             <div className="flex items-center space-x-4">
               <div className="flex items-center space-x-2 text-sm text-gray-600">
                 <Award className="w-4 h-4" />
-                <span>{correctAnswers} / {answeredQuestions} correct</span>
+                <span>{correctAnswers} / {questions.length} correct ({Math.round((correctAnswers / questions.length) * 100)}%)</span>
               </div>
               
               {/* Performance Status Indicator */}
