@@ -426,42 +426,39 @@ export const useGameState = () => {
   };
 
   const checkChapterCompletion = (chapterId: number) => {
-    // Use setTimeout to ensure state has been updated
-    setTimeout(() => {
-      const chapter = gameChapters.find(c => c.id === chapterId);
-      if (!chapter) return;
+    const chapter = gameChapters.find(c => c.id === chapterId);
+    if (!chapter) return;
 
-      // Get current state from the chapter progress
-      const chapterData = currentChapterProgress.current[chapterId] || { flashcards: {}, questions: {} };
-      
-      // Count completed flashcards and questions
-      const flippedCards = Object.keys(chapterData.flashcards || {}).length;
-      const answeredQuestions = Object.keys(chapterData.questions || {}).length;
-      const correctAnswers = Object.values(chapterData.questions || {}).filter((q: any) => q.correct).length;
+    // Get current state from the chapter progress
+    const chapterData = currentChapterProgress.current[chapterId] || { flashcards: {}, questions: {} };
+    
+    // Count completed flashcards and questions
+    const flippedCards = Object.keys(chapterData.flashcards || {}).length;
+    const answeredQuestions = Object.keys(chapterData.questions || {}).length;
+    const correctAnswers = Object.values(chapterData.questions || {}).filter((q: any) => q.correct).length;
 
-      console.log(`Chapter ${chapterId} completion check:`, {
-        flippedCards,
-        totalCards: chapter.flashcards.length,
-        answeredQuestions,
-        totalQuestions: chapter.questions.length,
-        correctAnswers,
-        requiredCorrect: chapter.questions.length
-      });
+    console.log(`Chapter ${chapterId} completion check:`, {
+      flippedCards,
+      totalCards: chapter.flashcards.length,
+      answeredQuestions,
+      totalQuestions: chapter.questions.length,
+      correctAnswers,
+      requiredCorrect: chapter.questions.length
+    });
 
-      // CRITICAL: Chapter completion requires 100% correct answers
-      // All cards must be flipped, all questions answered, and ALL answers must be correct
-      if (flippedCards === chapter.flashcards.length && 
-          answeredQuestions === chapter.questions.length && 
-          correctAnswers === chapter.questions.length) {
-        console.log(`Chapter ${chapterId} meets completion criteria - completing now!`);
-        completeChapter(chapterId);
-      } else if (flippedCards === chapter.flashcards.length && 
-                 answeredQuestions === chapter.questions.length && 
-                 correctAnswers < chapter.questions.length) {
-        // All activities completed but not perfect score - don't complete chapter
-        console.log(`Chapter ${chapterId} not completed: Need 100% correct answers (got ${correctAnswers}/${chapter.questions.length})`);
-      }
-    }, 200);
+    // CRITICAL: Chapter completion requires 100% correct answers
+    // All cards must be flipped, all questions answered, and ALL answers must be correct
+    if (flippedCards === chapter.flashcards.length && 
+        answeredQuestions === chapter.questions.length && 
+        correctAnswers === chapter.questions.length) {
+      console.log(`Chapter ${chapterId} meets completion criteria - completing now!`);
+      completeChapter(chapterId);
+    } else if (flippedCards === chapter.flashcards.length && 
+               answeredQuestions === chapter.questions.length && 
+               correctAnswers < chapter.questions.length) {
+      // All activities completed but not perfect score - don't complete chapter
+      console.log(`Chapter ${chapterId} not completed: Need 100% correct answers (got ${correctAnswers}/${chapter.questions.length})`);
+    }
   };
 
   const completeChapter = (chapterId: number) => {
