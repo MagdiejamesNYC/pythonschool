@@ -38,11 +38,11 @@ export const Home: React.FC<HomeProps> = ({ progress, onStartLearning }) => {
           </button>
         </div>
 
-        {/* Small Contact Us Button */}
+        {/* Contact Us Button */}
         <div className="text-center mb-8">
           <button
             onClick={() => setShowContactModal(true)}
-            className="text-sm text-gray-600 hover:text-purple-600 underline transition-colors"
+            className="bg-white text-purple-600 border-2 border-purple-600 px-6 py-3 rounded-lg font-semibold hover:bg-purple-600 hover:text-white transition-all transform hover:scale-105 shadow-md"
           >
             Contact Us
           </button>
