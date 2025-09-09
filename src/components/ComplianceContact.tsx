@@ -286,8 +286,8 @@ export const ComplianceContact: React.FC = () => {
                 <h4 className="font-semibold text-gray-800 mb-3">Regulatory Agencies</h4>
                 <ul className="text-gray-600 text-sm space-y-2">
                   <li><strong>U.S. Department of Education (FERPA):</strong> <a href="mailto:FERPA@ed.gov" className="text-blue-600 underline">FERPA@ed.gov</a></li>
-                  <li><strong>Federal Trade Commission (COPPA):</strong> <a href="https://www.ftccomplaintassistant.gov/" className="text-blue-600 underline">FTC Complaint Assistant</a></li>
-                  <li><strong>Department of Justice (ADA):</strong> <a href="https://www.ada.gov/filing_complaint.htm" className="text-blue-600 underline">ADA Complaint Process</a></li>
+                  <li><strong>Federal Trade Commission (COPPA):</strong> <a href="https://www.ftccomplaintassistant.gov/" className=\"text-blue-600 underline">FTC Complaint Assistant</a></li>
+                  <li><strong>Department of Justice (ADA):</strong> <a href="https://www.ada.gov/filing_complaint.htm" className=\"text-blue-600 underline">ADA Complaint Process</a></li>
                   <li><strong>State Privacy Offices:</strong> Contact your state's privacy or consumer protection office</li>
                 </ul>
               </div>
