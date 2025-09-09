@@ -39,6 +39,11 @@ export const Quiz: React.FC<QuizProps> = ({
   const allQuestionsAnswered = answeredQuestions === questions.length;
   const hasIncorrectAnswers = allQuestionsAnswered && correctAnswers < questions.length;
   const hasPerfectScore = allQuestionsAnswered && correctAnswers === questions.length;
+  
+  // Show retry option if student has answered at least one question and has at least one incorrect answer
+  const hasAttemptedQuestions = answeredQuestions > 0;
+  const hasAnyIncorrectAnswers = questions.some(q => q.answered && !q.correct);
+  const shouldShowRetryOption = hasAttemptedQuestions && hasAnyIncorrectAnswers;
 
   // Get current achiever status
   const achieverStatus = getAchieverStatus ? getAchieverStatus(chapterId) : null;
@@ -181,7 +186,7 @@ export const Quiz: React.FC<QuizProps> = ({
   return (
     <>
       {/* Retry Quiz Banner - Show when all questions answered but not 100% */}
-      {hasIncorrectAnswers && onRetryQuiz && (
+      {shouldShowRetryOption && onRetryQuiz && (
         <div className="bg-orange-50 border border-orange-200 rounded-2xl p-6 mb-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
@@ -189,9 +194,14 @@ export const Quiz: React.FC<QuizProps> = ({
                 <AlertTriangle className="w-6 h-6 text-orange-600" />
               </div>
               <div>
-                <h3 className="text-lg font-semibold text-orange-800">Perfect Score Required</h3>
+                <h3 className="text-lg font-semibold text-orange-800">
+                  {allQuestionsAnswered ? 'Perfect Score Required' : 'Retry Available'}
+                </h3>
                 <p className="text-orange-700">
-                  You need 100% correct answers ({correctAnswers}/{questions.length} = {Math.round((correctAnswers / questions.length) * 100)}%) to unlock the next chapter.
+                  {allQuestionsAnswered 
+                    ? `You need 100% correct answers (${correctAnswers}/${questions.length} = ${Math.round((correctAnswers / questions.length) * 100)}%) to unlock the next chapter.`
+                    : `You have some incorrect answers. You can retry the quiz to improve your score (${correctAnswers}/${answeredQuestions} answered correctly so far).`
+                  }
                 </p>
               </div>
             </div>

@@ -30,13 +30,12 @@ export const ChapterView: React.FC<ChapterViewProps> = ({
   const answeredQuestions = chapter.questions.filter(q => q.answered).length;
   const correctAnswers = chapter.questions.filter(q => q.correct).length;
 
-  const allCardsFlipped = flippedCards === chapter.flashcards.length;
   const allQuestionsAnswered = answeredQuestions === chapter.questions.length;
   const perfectScore = correctAnswers === chapter.questions.length;
-  const isCompleted = allCardsFlipped && allQuestionsAnswered && perfectScore;
+  const isCompleted = allQuestionsAnswered && perfectScore;
   
-  // Check if user has completed all activities but doesn't have perfect score
-  const needsRedo = allCardsFlipped && allQuestionsAnswered && !perfectScore;
+  // Check if user has answered all questions but doesn't have perfect score
+  const needsRedo = allQuestionsAnswered && !perfectScore;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 via-blue-50 to-teal-50">
