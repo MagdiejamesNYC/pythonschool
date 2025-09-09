@@ -7,13 +7,6 @@ import { ChapterView } from './components/ChapterView';
 import { Projects } from './components/Projects';
 import { Collection } from './components/Collection';
 import { Shop } from './components/Shop';
-import { ComplianceHub } from './components/ComplianceHub';
-import { PrivacyPolicy } from './components/PrivacyPolicy';
-import { FERPACompliance } from './components/FERPACompliance';
-import { COPPACompliance } from './components/COPPACompliance';
-import { AccessibilityStatement } from './components/AccessibilityStatement';
-import { SecurityStatement } from './components/SecurityStatement';
-import { ComplianceContact } from './components/ComplianceContact';
 import { useGameState } from './hooks/useGameState';
 import { useAuth } from './hooks/useAuth';
 import { Chapter } from './types';
@@ -93,20 +86,6 @@ function App() {
         return <Collection creatures={creatures} />;
       case 'shop':
         return <Shop progress={progress} onBuyEgg={buyEgg} onHatchEgg={hatchEgg} />;
-      case 'compliance':
-        return <ComplianceHub onViewChange={handleViewChange} />;
-      case 'privacy-policy':
-        return <PrivacyPolicy />;
-      case 'ferpa-compliance':
-        return <FERPACompliance />;
-      case 'coppa-compliance':
-        return <COPPACompliance />;
-      case 'accessibility-statement':
-        return <AccessibilityStatement />;
-      case 'security-statement':
-        return <SecurityStatement />;
-      case 'compliance-contact':
-        return <ComplianceContact />;
       default:
         return <Home progress={progress} onStartLearning={handleStartLearning} />;
     }

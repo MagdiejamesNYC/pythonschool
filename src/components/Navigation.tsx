@@ -1,5 +1,5 @@
 import React from 'react';
-import { BookOpen, TextSelection as Collection, ShoppingBag, Home, Code, Shield } from 'lucide-react';
+import { BookOpen, TextSelection as Collection, ShoppingBag, Home, Code } from 'lucide-react';
 
 interface NavigationProps {
   currentView: string;
@@ -12,8 +12,7 @@ export const Navigation: React.FC<NavigationProps> = ({ currentView, onViewChang
     { id: 'chapters', label: 'Learn', icon: BookOpen },
     { id: 'projects', label: 'Projects', icon: Code },
     { id: 'collection', label: 'Collection', icon: Collection },
-    { id: 'shop', label: 'Shop', icon: ShoppingBag },
-    { id: 'compliance', label: 'Legal', icon: Shield }
+    { id: 'shop', label: 'Shop', icon: ShoppingBag }
   ];
 
   return (
