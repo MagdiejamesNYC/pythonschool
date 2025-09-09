@@ -212,7 +212,7 @@ export const FERPACompliance: React.FC = () => {
                 <li><strong>U.S. Department of Education FERPA Office:</strong> <a href="https://studentprivacy.ed.gov/" className=\"text-blue-600 underline">https://studentprivacy.ed.gov/</a></li>
                 <li><strong>FERPA Regulations:</strong> 34 CFR Part 99</li>
                 <li><strong>Student Privacy Policy Office:</strong> <a href="mailto:FERPA@ed.gov" className="text-blue-600 underline">FERPA@ed.gov</a></li>
-                <li><strong>FERPA Complaint Process:</strong> <a href="https://studentprivacy.ed.gov/file-a-complaint" className=\"text-blue-600 underline">File a Complaint</a></li>
+                <li><strong>FERPA Complaint Process:</strong> <a href="https://studentprivacy.ed.gov/file-a-complaint" className="text-blue-600 underline">File a Complaint</a></li>
               </ul>
             </section>
           </div>

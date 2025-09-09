@@ -245,10 +245,10 @@ export const COPPACompliance: React.FC = () => {
             <section className="mb-8">
               <h2 className="text-2xl font-semibold text-gray-800 mb-4">Additional Resources</h2>
               <ul className="list-disc pl-6 text-gray-600">
-                <li><strong>FTC COPPA Information:</strong> <a href="https://www.ftc.gov/enforcement/rules/rulemaking-regulatory-reform-proceedings/childrens-online-privacy-protection-rule" className=\"text-blue-600 underline">FTC COPPA Rule</a></li>
-                <li><strong>COPPA Safe Harbor:</strong> <a href="https://www.ftc.gov/enforcement/rules/rulemaking-regulatory-reform-proceedings/childrens-online-privacy-protection-rule" className=\"text-blue-600 underline">Safe Harbor Provisions</a></li>
+                <li><strong>FTC COPPA Information:</strong> <a href="https://www.ftc.gov/enforcement/rules/rulemaking-regulatory-reform-proceedings/childrens-online-privacy-protection-rule" className="text-blue-600 underline">FTC COPPA Rule</a></li>
+                <li><strong>COPPA Safe Harbor:</strong> <a href="https://www.ftc.gov/enforcement/rules/rulemaking-regulatory-reform-proceedings/childrens-online-privacy-protection-rule" className="text-blue-600 underline">Safe Harbor Provisions</a></li>
                 <li><strong>Parent's Guide to COPPA:</strong> <a href="https://www.consumer.ftc.gov/articles/0031-protecting-your-childs-privacy-online" className="text-blue-600 underline">Protecting Your Child's Privacy Online</a></li>
-                <li><strong>File a COPPA Complaint:</strong> <a href="https://www.ftccomplaintassistant.gov/" className=\"text-blue-600 underline">FTC Complaint Assistant</a></li>
+                <li><strong>File a COPPA Complaint:</strong> <a href="https://www.ftccomplaintassistant.gov/" className="text-blue-600 underline">FTC Complaint Assistant</a></li>
               </ul>
             </section>
           </div>
