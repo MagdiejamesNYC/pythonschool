@@ -300,10 +300,10 @@ export const AccessibilityStatement: React.FC = () => {
               <h2 className="text-2xl font-semibold text-gray-800 mb-4">Additional Resources</h2>
               <ul className="list-disc pl-6 text-gray-600">
                 <li><strong>Web Content Accessibility Guidelines:</strong> <a href="https://www.w3.org/WAI/WCAG21/quickref/" className=\"text-blue-600 underline">WCAG 2.1 Quick Reference</a></li>
-                <li><strong>WebAIM:</strong> <a href="https://webaim.org/" className="text-blue-600 underline">Web Accessibility Resources</a></li>
-                <li><strong>Section 508:</strong> <a href="https://www.section508.gov/" className="text-blue-600 underline">Federal Accessibility Requirements</a></li>
-                <li><strong>ADA.gov:</strong> <a href="https://www.ada.gov/" className="text-blue-600 underline">Americans with Disabilities Act</a></li>
-                <li><strong>A11Y Project:</strong> <a href="https://www.a11yproject.com/" className="text-blue-600 underline">Community-driven accessibility resources</a></li>
+                <li><strong>WebAIM:</strong> <a href="https://webaim.org/" className=\"text-blue-600 underline">Web Accessibility Resources</a></li>
+                <li><strong>Section 508:</strong> <a href="https://www.section508.gov/" className=\"text-blue-600 underline">Federal Accessibility Requirements</a></li>
+                <li><strong>ADA.gov:</strong> <a href="https://www.ada.gov/" className=\"text-blue-600 underline">Americans with Disabilities Act</a></li>
+                <li><strong>A11Y Project:</strong> <a href="https://www.a11yproject.com/" className=\"text-blue-600 underline">Community-driven accessibility resources</a></li>
               </ul>
             </section>
           </div>
