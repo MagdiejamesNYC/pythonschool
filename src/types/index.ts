@@ -79,4 +79,5 @@ export interface ChapterProgressData {
   flashcards: { [cardId: number]: boolean };
   questions: { [questionId: number]: { answered: boolean; correct: boolean } };
   performance?: ChapterPerformance;
+  quizResets?: number;
 }

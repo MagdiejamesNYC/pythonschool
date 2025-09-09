@@ -631,8 +631,23 @@ export const useGameState = () => {
     console.log(`Redoing chapter ${chapterId}`);
     
     try {
+      // Track quiz reset count
+      if (!currentChapterProgress.current[chapterId]) {
+        currentChapterProgress.current[chapterId] = { flashcards: {}, questions: {}, quizResets: 0 };
+      }
+      
+      // Increment quiz reset counter
+      const currentResets = currentChapterProgress.current[chapterId].quizResets || 0;
+      currentChapterProgress.current[chapterId].quizResets = currentResets + 1;
+      
+      console.log(`Quiz reset count for chapter ${chapterId}: ${currentChapterProgress.current[chapterId].quizResets}`);
+
       // Reset chapter progress in memory
-      currentChapterProgress.current[chapterId] = { flashcards: {}, questions: {} };
+      currentChapterProgress.current[chapterId] = { 
+        flashcards: {}, 
+        questions: {},
+        quizResets: currentChapterProgress.current[chapterId].quizResets // Preserve reset count
+      };
 
       // Update game chapters to reset flashcards and questions
       setGameChapters(prev => prev.map(chapter => 
