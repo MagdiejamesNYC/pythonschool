@@ -37,13 +37,11 @@ export const Quiz: React.FC<QuizProps> = ({
   const answeredQuestions = questions.filter(q => q.answered).length;
   const correctAnswers = questions.filter(q => q.correct).length;
   const allQuestionsAnswered = answeredQuestions === questions.length;
-  const hasIncorrectAnswers = allQuestionsAnswered && correctAnswers < questions.length;
   const hasPerfectScore = allQuestionsAnswered && correctAnswers === questions.length;
   
-  // Show retry option if student has answered at least one question and has at least one incorrect answer
-  const hasAttemptedQuestions = answeredQuestions > 0;
-  const hasAnyIncorrectAnswers = questions.some(q => q.answered && !q.correct);
-  const shouldShowRetryOption = hasAttemptedQuestions && hasAnyIncorrectAnswers;
+  // Show retry option if student has answered at least one question incorrectly
+  const hasIncorrectAnswers = questions.some(q => q.answered && !q.correct);
+  const shouldShowRetryOption = hasIncorrectAnswers && onRetryQuiz;
 
   // Get current achiever status
   const achieverStatus = getAchieverStatus ? getAchieverStatus(chapterId) : null;
@@ -146,7 +144,9 @@ export const Quiz: React.FC<QuizProps> = ({
   };
 
   const nextQuestion = () => {
-    if (currentQuestionIndex < questions.length - 1) {
+    const isLastQuestion = currentQuestionIndex === questions.length - 1;
+    
+    if (!isLastQuestion) {
       setCurrentQuestionIndex(prev => prev + 1);
       setSelectedAnswer(null);
       setShowResult(false);
@@ -156,6 +156,8 @@ export const Quiz: React.FC<QuizProps> = ({
       setStudentAttempts([]);
       setShowHint(false);
       setCurrentHint('');
+    } else {
+      // On last question, just stay here - user can navigate manually or retry
     }
   };
 
@@ -418,7 +420,7 @@ export const Quiz: React.FC<QuizProps> = ({
           
           <button
             onClick={nextQuestion}
-            disabled={false}
+            disabled={currentQuestionIndex === questions.length - 1}
             className="px-6 py-2 rounded-lg bg-gradient-to-r from-purple-600 to-blue-600 text-white hover:from-purple-700 hover:to-blue-700 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {currentQuestionIndex === questions.length - 1 ? 'Finish' : 'Next'}
