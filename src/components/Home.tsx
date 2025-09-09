@@ -1,6 +1,8 @@
 import React from 'react';
+import { useState } from 'react';
 import { Play, Award, TrendingUp, Users } from 'lucide-react';
 import { UserProgress } from '../types';
+import { ContactModal } from './ContactModal';
 
 interface HomeProps {
   progress: UserProgress;
@@ -8,9 +10,11 @@ interface HomeProps {
 }
 
 export const Home: React.FC<HomeProps> = ({ progress, onStartLearning }) => {
+  const [showContactModal, setShowContactModal] = useState(false);
   const completionRate = (progress.completedChapters.length / 14) * 100;
 
   return (
+    <>
     <div className="min-h-screen bg-gradient-to-br from-purple-50 via-blue-50 to-teal-50">
       <div className="container mx-auto px-4 py-12">
         {/* Hero Section */}
@@ -31,6 +35,16 @@ export const Home: React.FC<HomeProps> = ({ progress, onStartLearning }) => {
           >
             <Play className="w-6 h-6 inline mr-2" />
             Start Learning Python
+          </button>
+        </div>
+
+        {/* Small Contact Us Button */}
+        <div className="text-center mb-8">
+          <button
+            onClick={() => setShowContactModal(true)}
+            className="text-sm text-gray-600 hover:text-purple-600 underline transition-colors"
+          >
+            Contact Us
           </button>
         </div>
 
@@ -106,5 +120,11 @@ export const Home: React.FC<HomeProps> = ({ progress, onStartLearning }) => {
         </div>
       </div>
     </div>
+
+    <ContactModal 
+      isOpen={showContactModal} 
+      onClose={() => setShowContactModal(false)} 
+    />
+    </>
   );
 };

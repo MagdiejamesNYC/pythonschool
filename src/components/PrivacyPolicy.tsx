@@ -194,22 +194,6 @@ export const PrivacyPolicy: React.FC = () => {
               </div>
               <div className="text-gray-600">
                 <p>If you have questions about this Privacy Policy or our compliance with FERPA, COPPA, or other applicable laws, please contact us using the button below.</p>
-                <div className="mt-4">
-                  <button
-                    onClick={() => setShowContactModal(true)}
-                    className="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-6 py-3 rounded-lg hover:from-purple-700 hover:to-blue-700 transition-all transform hover:scale-105 font-medium"
-                  >
-                    Contact Us
-                  </button>
-                </div>
-                <div className="mt-4">
-                  <button
-                    onClick={() => setShowContactModal(true)}
-                    className="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-6 py-3 rounded-lg hover:from-purple-700 hover:to-blue-700 transition-all transform hover:scale-105 font-medium"
-                  >
-                    Contact Us
-                  </button>
-                </div>
               </div>
             </section>
 
