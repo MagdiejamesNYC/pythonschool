@@ -219,7 +219,7 @@ export const PrivacyPolicy: React.FC = () => {
         isOpen={showContactModal} 
         onClose={() => setShowContactModal(false)} 
       />
-    </>
+    </div>
   );
 };
   )
