@@ -7,6 +7,7 @@ import { ChapterView } from './components/ChapterView';
 import { Projects } from './components/Projects';
 import { Collection } from './components/Collection';
 import { Shop } from './components/Shop';
+import { PrivacyPolicy } from './components/PrivacyPolicy';
 import { useGameState } from './hooks/useGameState';
 import { useAuth } from './hooks/useAuth';
 import { Chapter } from './types';
@@ -86,6 +87,8 @@ function App() {
         return <Collection creatures={creatures} />;
       case 'shop':
         return <Shop progress={progress} onBuyEgg={buyEgg} onHatchEgg={hatchEgg} />;
+      case 'privacy':
+        return <PrivacyPolicy />;
       default:
         return <Home progress={progress} onStartLearning={handleStartLearning} />;
     }
